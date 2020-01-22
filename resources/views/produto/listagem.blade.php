@@ -26,4 +26,9 @@
 <span class="badge badge-danger pull-right">
   Um ou menos itens no estoque!!!
 </span>
+@if(old('name'))
+  <div class="alert alert-success">
+    <strong>Sucesso! </strong>Produto {{ old('nome') }} adicionado com sucesso.
+  </div>
+@endif
 @endsection

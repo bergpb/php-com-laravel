@@ -21,10 +21,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-md">
         <li class="nav-item active">
-          <a class="nav-link" href="/produtos">Listagem</a>
+          <a class="nav-link" href="{{action('ProdutoController@lista')}}">Listagem</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/produtos/novo">Novo</a>
+          <a class="nav-link" href="{{action('ProdutoController@novo')}}">Novo</a>
         </li>
       </ul>
     </div>

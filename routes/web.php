@@ -15,8 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos', 'ProdutoController@lista');
+Route::get('/produtos', [
+    'as'=>'lista-produtos',
+    'uses'=>'ProdutoController@lista'
+]);
 Route::get('/produtos/novo', 'ProdutoController@novo');
 Route::match(array('GET', 'POST'), '/produtos/adiciona', 'ProdutoController@adiciona');
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')
        ->where('id', '[0-9]+');
+Route::get('produtos/json', 'ProdutoController@listaJson');
