@@ -19,6 +19,11 @@
           <i style="color: blue" class="fa fa-search" aria-hidden="true"></i>
         </a>
       </td>
+      <td>
+        <a href="{{action('ProdutoController@remove', $produto->id)}}">
+          <i style="color: red" class="fa fa-trash" aria-hidden="true"></i>
+        </a>
+      </td>
     </tr>
     @endforeach
   </table>

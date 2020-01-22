@@ -24,3 +24,4 @@ Route::match(array('GET', 'POST'), '/produtos/adiciona', 'ProdutoController@adic
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')
        ->where('id', '[0-9]+');
 Route::get('produtos/json', 'ProdutoController@listaJson');
+Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
