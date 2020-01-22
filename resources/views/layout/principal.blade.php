@@ -23,6 +23,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="/produtos">Listagem</a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/produtos/novo">Novo</a>
+        </li>
       </ul>
     </div>
   </nav>
