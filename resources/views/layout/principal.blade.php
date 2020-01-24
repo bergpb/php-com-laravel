@@ -11,28 +11,21 @@
   <title>Controle de Estoque</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/produtos">Estoque Laravel</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-md">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{action('ProdutoController@lista')}}">Listagem</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{action('ProdutoController@novo')}}">Novo</a>
-        </li>
-      </ul>
-    </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
+      <a class="navbar navbar-expand-lg" href="{{ route('listar') }}">Home</a>
+      @auth
+        <a href="/sair" class="text-danger">Sair</a>
+      @endauth
+
+      @guest
+        <a href="/entrar" class="text-danger">Entrar</a>
+      @endguest
   </nav>
   <div class="container">
-    @yield('conteudo')
+      <h1>@yield('cabecalho')</h1>
+      @yield('conteudo')
   </div>
-  <footer class="footer">
-    <p>Controle de Estoques.</p>
+  <footer class="footer text-center is-hidden-mobile">
+    <span>Controle de Estoques feito em Laravel</span>
   </footer>
 </body>

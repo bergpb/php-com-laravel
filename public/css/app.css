@@ -1,15 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-
-footer.footer{
+.footer {
+  position: fixed;
+  font-size: 0.8rem;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
   background-color: #337ab7;
-  border-color: #2e6da4;
-  margin-top: 55px;
-  color:white;
-  border-radius: 5px;
-}
-footer.footer p {
-  text-align: center;
-  padding: 6px;
 }
 
 /*!

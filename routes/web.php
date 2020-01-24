@@ -15,13 +15,44 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos', [
-    'as'=>'lista-produtos',
-    'uses'=>'ProdutoController@lista'
-]);
-Route::get('/produtos/novo', 'ProdutoController@novo');
-Route::match(array('GET', 'POST'), '/produtos/adiciona', 'ProdutoController@adiciona');
-Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')
-       ->where('id', '[0-9]+');
-Route::get('produtos/json', 'ProdutoController@listaJson');
-Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/produtos', 'ProdutoController@lista')->name('listar');
+
+Route::get('/produtos/cadastrar', 'ProdutoController@novo')->name('cadastrar')
+    ->middleware('autenticador');
+
+Route::match(['get', 'post'], '/produtos/adiciona', 'ProdutoController@adiciona')
+    ->name('adicionar')
+    ->middleware('autenticador');
+
+Route::get('/produtos/mostrar/{id}', 'ProdutoController@mostra')
+    ->name('exibir');
+
+Route::get('/produtos/editar/{id}', 'ProdutoController@edita')
+    ->name('editar')
+    ->middleware('autenticador');
+
+Route::put('/produtos/atualizar/{id}', 'ProdutoController@atualiza')
+    ->name('atualizar')
+    ->middleware('autenticador');
+
+Route::get('produtos/json', 'ProdutoController@listaJson')
+    ->name('listar_json');
+
+Route::get('/produtos/remover/{id}', 'ProdutoController@remove')
+    ->name('remover')
+    ->middleware('autenticador');
+
+Auth::routes();
+
+Route::get('/entrar', 'EntrarController@index');
+Route::post('/entrar', 'EntrarController@entrar');
+
+Route::get('/registrar', 'RegistroController@create');
+Route::post('/registrar', 'RegistroController@store');
+
+Route::get('/sair', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/entrar');
+});

@@ -3,11 +3,12 @@
 namespace estoque\Http\Controllers;
 
 use estoque\Produto;
-use Request;
+use Illuminate\Support\Facades\Request;
 use estoque\Http\Requests\ProdutosFormRequest;
 
 
 class ProdutoController extends Controller {
+
     public function lista() {
         $produtos = Produto::all();
         return view('produto.listagem')->withProdutos($produtos);
@@ -16,6 +17,7 @@ class ProdutoController extends Controller {
     public function mostra() {
         $id = Request::route('id');
         $produto = Produto::find($id);
+
         if(empty($produto)) {
             return "Produto não existe.";
         }
@@ -28,6 +30,20 @@ class ProdutoController extends Controller {
 
     public function adiciona(ProdutosFormRequest $request) {
         Produto::create($request->all());
+
+        return redirect()
+            ->action('ProdutoController@lista')
+            ->withInput(Request::only('nome'));
+    }
+
+    public function edita($id) {
+        $produto = Produto::find($id);
+
+        return view('produto.edita')->withProduto($produto);
+    }
+
+    public function atualiza(ProdutosFormRequest $request, $id){
+        $produto = Produto::find($id)->update($request->all());
 
         return redirect()
             ->action('ProdutoController@lista')

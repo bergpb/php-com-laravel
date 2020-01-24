@@ -8,4 +8,5 @@
   <li><strong>Descrição: </strong><?= $produto->descricao ?></li>
   <li><strong>Quantidade estoque: </strong><?= $produto->quantidade ?></li>
 </ul>
+<a class="btn btn-info btn-block" href="{{ route('listar') }}">Voltar</a>
 @endsection

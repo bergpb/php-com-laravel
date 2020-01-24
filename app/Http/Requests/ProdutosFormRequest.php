@@ -26,7 +26,8 @@ class ProdutosFormRequest extends FormRequest
         return [
             'nome' => 'required|max:100',
             'descricao' => 'required|max:255',
-            'valor' => 'required|numeric'
+            'valor' => 'required|numeric',
+            'quantidade' => 'required|numeric'
         ];
     }
 
@@ -34,7 +35,8 @@ class ProdutosFormRequest extends FormRequest
         return [
             'nome.required' => 'Campo nome deve ser preenchido.',
             'descricao.required' => 'Campo descrição deve ser preenchido.',
-            'valor.required' => 'Campo valor deve ser preenchido.'
+            'valor.required' => 'Campo valor deve ser preenchido.',
+            'quantidade.required' => 'Campo quantidade deve ser preenchido.'
         ];
     }
 }
