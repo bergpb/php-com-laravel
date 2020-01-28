@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-class RegistroController extends Controller
+class RegisterController extends Controller
 {
     public function create() {
-        return view('registro.create');
+        return view('register.index');
     }
 
     public function store(Request $request) {
@@ -20,6 +20,6 @@ class RegistroController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('listar');
+        return redirect()->route('list');
     }
 }

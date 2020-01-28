@@ -11,48 +11,43 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/produtos', 'ProductController@list')->name('list');
 
-Route::get('/produtos', 'ProdutoController@lista')->name('listar');
-
-Route::get('/produtos/cadastrar', 'ProdutoController@novo')->name('cadastrar')
+Route::get('/produtos/cadastrar', 'ProductController@new')->name('new')
     ->middleware('autenticador');
 
-Route::match(['get', 'post'], '/produtos/adiciona', 'ProdutoController@adiciona')
-    ->name('adicionar')
+Route::match(['get', 'post'], '/produtos/adiciona', 'ProductController@add')
+    ->name('add')
     ->middleware('autenticador');
 
-Route::get('/produtos/mostrar/{id}', 'ProdutoController@mostra')
-    ->name('exibir');
+Route::get('/produtos/mostrar/{id}', 'ProductController@show')
+    ->name('show');
 
-Route::get('/produtos/editar/{id}', 'ProdutoController@edita')
-    ->name('editar')
+Route::get('/produtos/editar/{id}', 'ProductController@edit')
+    ->name('edit')
     ->middleware('autenticador');
 
-Route::put('/produtos/atualizar/{id}', 'ProdutoController@atualiza')
-    ->name('atualizar')
+Route::put('/produtos/atualizar/{id}', 'ProductController@update')
+    ->name('update')
     ->middleware('autenticador');
 
-Route::get('produtos/json', 'ProdutoController@listaJson')
-    ->name('listar_json');
+Route::get('produtos/json', 'ProductController@listJson')
+    ->name('list_json');
 
-Route::get('/produtos/remover/{id}', 'ProdutoController@remove')
-    ->name('remover')
+Route::get('/produtos/remover/{id}', 'ProductController@remove')
+    ->name('remove')
     ->middleware('autenticador');
 
-Auth::routes();
+Route::get('/login', 'LoginController@index')
+    ->name('login');
+Route::post('/login', 'LoginController@login');
 
-Route::get('/entrar', 'EntrarController@index');
-Route::post('/entrar', 'EntrarController@entrar');
+Route::get('/registrar', 'RegisterController@create');
+Route::post('/registrar', 'RegisterController@store');
 
-Route::get('/registrar', 'RegistroController@create');
-Route::post('/registrar', 'RegistroController@store');
-
-Route::get('/sair', function () {
+Route::get('/logout', function () {
     \Illuminate\Support\Facades\Auth::logout();
-    return redirect('/entrar');
-});
+    return redirect('/login');
+})->name('logout');
